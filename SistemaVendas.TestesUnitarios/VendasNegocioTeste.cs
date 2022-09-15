@@ -12,7 +12,7 @@ public class VendasNegocioTeste
 
     public VendasNegocioTeste()
     {
-        var retorno = new List<Vendas>
+        var listaVendas = new List<Vendas>
         {
             new Vendas
             {
@@ -37,7 +37,7 @@ public class VendasNegocioTeste
         };
 
         _vendasRepositorioMock = new Mock<IVendasRepositorio>();
-        _vendasRepositorioMock.Setup(v => v.BuscarVendas(It.IsAny<short>(), It.IsAny<short>())).Returns(retorno);
+        _vendasRepositorioMock.Setup(v => v.BuscarVendas(It.IsAny<short>(), It.IsAny<short>())).Returns(listaVendas);
 
         _vendasNegocio = new VendasNegocio(_vendasRepositorioMock.Object);
     }
@@ -46,6 +46,6 @@ public class VendasNegocioTeste
     public void DeveCalcularMediaMensalComSucesso()
     {
         var valorMensal = _vendasNegocio.CalcularMediaMensal(4, 2021);
-        Assert.Equal(478m, valorMensal);
+        Assert.Equal(478, valorMensal);
     }
 }
